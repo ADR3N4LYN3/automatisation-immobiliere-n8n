@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Automatisation immobilière avec n8n : 5 workflows en français pour agents et agences</title>
+<meta name="description" content="Répondez à chaque contact en quelques secondes, relancez automatiquement, envoyez les nouveaux biens et les rapports vendeurs. Kit n8n en français, avec Google Sheets, Gmail et Google Agenda.">
+<link rel="canonical" href="https://adr3n4lyn3.github.io/automatisation-immobiliere-n8n/">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="product">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:title" content="Automatisation immobilière avec n8n : 5 workflows en français pour agents et agences">
+<meta property="og:description" content="Répondez à chaque contact en quelques secondes, relancez automatiquement, envoyez les nouveaux biens et les rapports vendeurs. Kit n8n en français, avec Google Sheets, Gmail et Google Agenda.">
+<meta property="og:url" content="https://adr3n4lyn3.github.io/automatisation-immobiliere-n8n/">
+<meta property="og:image" content="https://adr3n4lyn3.github.io/automatisation-immobiliere-n8n/img/partage.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#111827">
+<script type="application/ld+json">[{"@context": "https://schema.org", "@type": "Product", "name": "Kit d'automatisation immobilière pour n8n (en français)", "description": "5 workflows n8n en français pour agents et agences immobilières : réponse instantanée aux contacts, relances, alertes nouveaux biens, réservation de visites et rapport hebdomadaire aux vendeurs.", "image": "https://adr3n4lyn3.github.io/automatisation-immobiliere-n8n/img/partage.jpg", "brand": {"@type": "Brand", "name": "Christophe Revoire"}, "offers": {"@type": "Offer", "price": "99", "priceCurrency": "EUR", "availability": "https://schema.org/InStock", "url": "https://revoire.gumroad.com/l/kit-automatisation-immobiliere-n8n"}}, {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Faut-il savoir programmer ?", "acceptedAnswer": {"@type": "Answer", "text": "Non. Vous importez chaque workflow dans n8n, vous connectez votre compte Google en quelques clics et vous remplissez le nœud « Config » (ID du Google Sheet, nom de l'agence, lien de prise de rendez-vous…). Les textes des e-mails se modifient dans un bloc de texte clairement indiqué, en tête de chaque étape."}}, {"@type": "Question", "name": "De quoi ai-je besoin ?", "acceptedAnswer": {"@type": "Answer", "text": "De n8n en version 2 (n8n Cloud, avec abonnement n8n, ou n8n auto-hébergé, gratuit) et d'un compte Google (Gmail ou Google Workspace). Aucun CRM payant, aucun service tiers, aucune clé d'API à acheter."}}, {"@type": "Question", "name": "Où vont les données de mes contacts ?", "acceptedAnswer": {"@type": "Answer", "text": "Elles restent dans votre Google Sheet et votre instance n8n. Le kit n'envoie rien à un service extérieur et ne contient aucun identifiant ni aucune donnée personnelle."}}, {"@type": "Question", "name": "Est-ce compatible avec mon site ?", "acceptedAnswer": {"@type": "Answer", "text": "Oui, dès que votre formulaire peut envoyer ses réponses à une adresse web (webhook) : WordPress avec une extension de formulaire, Webflow, Typeform, Jotform, Tally… Les noms de champs français ou anglais sont reconnus automatiquement. Les e-mails reçus des portails demandent une étape de lecture supplémentaire, non incluse."}}, {"@type": "Question", "name": "Combien de temps pour l'installer ?", "acceptedAnswer": {"@type": "Answer", "text": "Environ 20 minutes pour l'ensemble. Un générateur de données de démo remplit le Sheet pour tout essayer avant de brancher vos vrais contacts, et chaque workflow est livré avec un guide de démonstration."}}, {"@type": "Question", "name": "Comment a-t-il été testé ?", "acceptedAnswer": {"@type": "Answer", "text": "Chaque workflow tourne dans une suite de tests automatisés sur n8n 2.41 (130 scénarios en français et en anglais), puis a été essayé sur de vrais comptes Google Sheets, Gmail et Google Agenda."}}, {"@type": "Question", "name": "Et après l'achat ?", "acceptedAnswer": {"@type": "Answer", "text": "Vous téléchargez immédiatement l'archive. Pour toute question, répondez à l'e-mail de votre achat. Les mises à jour sont gratuites si une nouvelle version de n8n casse un workflow."}}, {"@type": "Question", "name": "Existe-t-il une version anglaise ?", "acceptedAnswer": {"@type": "Answer", "text": "Oui, le même kit existe en anglais : Real Estate Automation Kit for n8n."}}]}]</script>
+<style>
+:root { --ink:#111827; --muted:#4b5563; --line:#e5e7eb; --soft:#f6f7f9; --accent:#0f766e; --accent-2:#2dd4bf; --paper:#fff; }
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { margin:0; font:17px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif; color:var(--ink); background:var(--paper); }
+a { color:var(--accent); }
+.wrap { max-width:1120px; margin:0 auto; padding:0 20px; }
+header.top { position:sticky; top:0; z-index:5; background:rgba(17,24,39,.96); backdrop-filter:blur(6px); }
+header.top .wrap { display:flex; align-items:center; justify-content:space-between; height:60px; }
+.brand { color:#fff; font-weight:700; text-decoration:none; letter-spacing:.2px; }
+.brand span { color:var(--accent-2); }
+nav a { color:#d1d5db; text-decoration:none; margin-left:22px; font-size:15px; }
+nav a:hover { color:#fff; }
+.btn { display:inline-block; padding:13px 22px; border-radius:10px; font-weight:650; text-decoration:none; transition:transform .12s, box-shadow .12s; }
+.btn:hover { transform:translateY(-1px); box-shadow:0 6px 18px rgba(0,0,0,.18); }
+.btn-main { background:var(--accent-2); color:#062925; }
+.btn-ghost { border:1.5px solid #9ca3af; color:#fff; }
+.btn-dark { background:var(--ink); color:#fff; }
+.hero { background:var(--ink); color:#fff; padding:72px 0 64px; }
+.hero .wrap { display:grid; grid-template-columns:1.05fr .95fr; gap:48px; align-items:center; }
+.eyebrow { display:inline-block; background:rgba(45,212,191,.14); color:var(--accent-2); border-radius:999px; padding:5px 14px; font-size:14px; font-weight:650; }
+h1 { font-size:clamp(32px,4.4vw,50px); line-height:1.12; margin:18px 0 18px; letter-spacing:-.5px; }
+.lead { color:#d1d5db; font-size:19px; margin:0 0 28px; }
+.ctas { display:flex; flex-wrap:wrap; gap:12px; }
+.promo { margin:18px 0 0; color:#9ca3af; font-size:15px; }
+.promo b { color:var(--accent-2); }
+.hero img { width:100%; height:auto; border-radius:14px; box-shadow:0 18px 50px rgba(0,0,0,.45); }
+section { padding:72px 0; }
+section.alt { background:var(--soft); }
+h2 { font-size:clamp(26px,3vw,36px); line-height:1.2; margin:0 0 14px; letter-spacing:-.3px; }
+.intro { color:var(--muted); max-width:760px; margin:0 0 36px; }
+.pains { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+.pain { background:var(--paper); border:1px solid var(--line); border-radius:14px; padding:22px; }
+.pain h3 { margin:0 0 8px; font-size:18px; }
+.pain p { margin:0; color:var(--muted); }
+.wf { display:grid; grid-template-columns:.85fr 1.15fr; gap:36px; align-items:center; padding:30px 0; border-top:1px solid var(--line); }
+.wf:first-of-type { border-top:0; }
+.num { margin:0; font-weight:800; color:var(--accent); letter-spacing:1px; }
+.wf h3 { font-size:23px; margin:4px 0 6px; }
+.trigger { margin:0 0 10px; color:var(--muted); font-size:15px; }
+.wf ul { margin:0; padding-left:20px; }
+.wf li { margin:6px 0; }
+.shot img { width:100%; height:auto; border:1px solid var(--line); border-radius:12px; background:#f7f7f7; }
+.mails { display:grid; grid-template-columns:repeat(2,1fr); gap:24px; align-items:start; }
+.mail { margin:0; background:var(--paper); border:1px solid var(--line); border-radius:14px; overflow:hidden; box-shadow:0 4px 14px rgba(17,24,39,.06); }
+.mail figcaption { background:var(--ink); color:#e5e7eb; padding:10px 16px; font-size:14px; font-weight:600; }
+.mail-head { padding:12px 18px; border-bottom:1px solid var(--line); font-size:14px; }
+.mail-head p { margin:2px 0; }
+.mail-head span { display:inline-block; width:50px; color:var(--muted); }
+.mail-body { padding:6px 18px 14px; font-size:15px; overflow-x:auto; }
+.mail-body h3 { font-size:16px; }
+.mail-body .link { color:#1a56db; text-decoration:underline; overflow-wrap:anywhere; }
+.note { color:var(--muted); font-size:15px; margin-top:22px; }
+.steps { counter-reset:s; display:grid; grid-template-columns:repeat(4,1fr); gap:20px; padding:0; list-style:none; }
+.steps li { background:var(--paper); border:1px solid var(--line); border-radius:14px; padding:22px; }
+.steps li::before { counter-increment:s; content:counter(s); display:inline-grid; place-items:center; width:34px; height:34px; border-radius:50%; background:var(--ink); color:#fff; font-weight:700; margin-bottom:10px; }
+.steps h3 { margin:0 0 6px; font-size:18px; }
+.steps p { margin:0; color:var(--muted); font-size:15px; }
+.inside { display:grid; grid-template-columns:1fr 1fr; gap:0 48px; padding-left:20px; margin:0; }
+.inside li { margin:6px 0; }
+.prices { display:grid; grid-template-columns:1.15fr 1fr 1fr; gap:20px; align-items:stretch; }
+.price { background:var(--paper); border:1px solid var(--line); border-radius:16px; padding:26px; display:flex; flex-direction:column; }
+.price.best { border:2px solid var(--accent); box-shadow:0 10px 30px rgba(15,118,110,.14); }
+.tag { align-self:flex-start; background:var(--accent); color:#fff; font-size:13px; font-weight:700; border-radius:999px; padding:3px 12px; margin-bottom:10px; }
+.price h3 { margin:0 0 4px; font-size:20px; }
+.amount { font-size:40px; font-weight:800; margin:6px 0 4px; }
+.price ul { padding-left:20px; margin:10px 0 22px; color:var(--muted); flex:1; }
+.free { margin-top:26px; padding:20px 24px; border:1px dashed var(--accent); border-radius:14px; background:rgba(45,212,191,.07); }
+details { border-bottom:1px solid var(--line); padding:16px 0; }
+summary { cursor:pointer; font-weight:650; font-size:18px; }
+details p { color:var(--muted); margin:10px 0 0; }
+.final { background:var(--ink); color:#fff; text-align:center; }
+.final p { color:#d1d5db; }
+footer { padding:34px 0; font-size:14px; color:var(--muted); border-top:1px solid var(--line); }
+footer p { margin:6px 0; }
+@media (max-width: 900px) {
+  .hero .wrap, .wf, .mails, .prices { grid-template-columns:1fr; }
+  .pains, .steps { grid-template-columns:1fr 1fr; }
+  nav a:not(.keep) { display:none; }
+}
+@media (max-width: 600px) {
+  body { font-size:16px; }
+  .wrap { padding:0 16px; }
+  .pains, .steps { grid-template-columns:1fr; }
+  .inside { grid-template-columns:1fr; }
+  .hero { padding:48px 0; }
+  section { padding:52px 0; }
+}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="#">Kit immobilier <span>n8n</span></a>
+  <nav><a href="#workflows">Workflows</a><a href="#exemples">Exemples</a><a href="#tarifs">Tarifs</a><a href="#faq">FAQ</a><a class="keep" href="https://revoire.gumroad.com/l/kit-automatisation-immobiliere-n8n">Acheter</a></nav>
+</div></header>
+
+<main>
+<section class="hero"><div class="wrap">
+  <div>
+    <span class="eyebrow">Pour agents et agences immobilières</span>
+    <h1>Répondez à chaque contact en quelques secondes, sans CRM payant</h1>
+    <p class="lead">5 automatisations n8n en français : réponse instantanée, relances, alertes nouveaux biens, réservation de visites et rapport hebdomadaire aux vendeurs. Avec Google Sheets, Gmail et Google Agenda.</p>
+    <div class="ctas">
+      <a class="btn btn-main" href="https://revoire.gumroad.com/l/kit-automatisation-immobiliere-n8n">Obtenir le kit — 99 €</a>
+      <a class="btn btn-ghost" href="https://revoire.gumroad.com/l/relances-contacts-immobiliers-n8n-gratuit">Essayer le module gratuit</a>
+    </div>
+    <p class="promo">−20 % avec le code <b>LAUNCH20</b> jusqu'au 31 octobre 2026</p>
+  </div>
+  <img src="img/kit.webp" width="1600" height="900" alt="Kit d'automatisation immobilière pour n8n : 5 workflows, un seul Google Sheet, Gmail et Google Agenda">
+</div></section>
+
+<section class="alt"><div class="wrap">
+  <h2>Ce qui fait perdre des affaires</h2>
+  <p class="intro">Pas la qualité du service : le temps de réponse et le suivi. Le kit s'occupe de tout ce qui se répète.</p>
+  <div class="pains">
+    <div class="pain"><h3>Les demandes attendent</h3><p>Elles arrivent le soir, le week-end ou pendant une visite. Le contact écrit aussi à d'autres agences.</p></div>
+    <div class="pain"><h3>Les relances s'oublient</h3><p>Beaucoup de contacts ne répondent pas au premier message. Sans relance, ils disparaissent.</p></div>
+    <div class="pain"><h3>Les vendeurs s'impatientent</h3><p>Ils veulent savoir ce qui se passe sur leur bien, chaque semaine. Rédiger ces points prend des heures.</p></div>
+  </div>
+</div></section>
+
+<section id="workflows"><div class="wrap">
+  <h2>Les 5 workflows du kit</h2>
+  <p class="intro">Ils partagent un seul Google Sheet à trois onglets — Contacts, Biens, Visites — et chaque étape est expliquée par une note en français directement dans n8n.</p>
+  
+      <article class="wf">
+        <div class="wf-text">
+          <p class="num">01</p>
+          <h3>Répondre instantanément aux contacts</h3>
+          <p class="trigger">Déclencheur : Formulaire de votre site (webhook)</p>
+          <ul><li>Chaque demande est vérifiée et notée de 0 à 100 : téléphone, délai, budget, référence du bien, financement.</li><li>Le contact est enregistré dans Google Sheets ; s&#x27;il revient, sa ligne est mise à jour.</li><li>Il reçoit en quelques secondes une réponse adaptée : achat, vente (estimation) ou location.</li><li>Vous êtes alerté immédiatement sur les contacts chauds.</li></ul>
+        </div>
+        <a class="shot" href="img/01-instant-lead-response.webp" target="_blank" rel="noopener">
+          <img src="img/01-instant-lead-response.webp" width="1376" height="416" loading="lazy"
+               alt="Workflow n8n « Répondre instantanément aux contacts » : enchaînement des étapes avec notes explicatives en français">
+        </a>
+      </article>
+
+      <article class="wf">
+        <div class="wf-text">
+          <p class="num">02</p>
+          <h3>Relancer automatiquement</h3>
+          <p class="trigger">Déclencheur : Du lundi au vendredi, 9 h</p>
+          <ul><li>Relances à J+1, J+3, J+7 et J+14, avec des textes différents pour l&#x27;achat, la vente et la location.</li><li>Arrêt automatique dès que le contact répond, réserve une visite ou demande à ne plus être contacté.</li><li>Étape, date du dernier contact et prochaine relance tenues à jour dans le Sheet.</li></ul>
+        </div>
+        <a class="shot" href="img/02-lead-follow-up-sequence.webp" target="_blank" rel="noopener">
+          <img src="img/02-lead-follow-up-sequence.webp" width="1373" height="517" loading="lazy"
+               alt="Workflow n8n « Relancer automatiquement » : enchaînement des étapes avec notes explicatives en français">
+        </a>
+      </article>
+
+      <article class="wf">
+        <div class="wf-text">
+          <p class="num">03</p>
+          <h3>Envoyer les nouveaux biens aux acquéreurs</h3>
+          <p class="trigger">Déclencheur : Tous les jours, 8 h</p>
+          <ul><li>Chaque nouveau bien est rapproché des critères : budget (avec tolérance), secteurs, chambres, type, vente ou location.</li><li>Un seul e-mail récapitulatif par acquéreur, avec ses meilleures correspondances.</li><li>Un bien n&#x27;est jamais envoyé deux fois.</li></ul>
+        </div>
+        <a class="shot" href="img/03-new-listing-buyer-alerts.webp" target="_blank" rel="noopener">
+          <img src="img/03-new-listing-buyer-alerts.webp" width="1373" height="590" loading="lazy"
+               alt="Workflow n8n « Envoyer les nouveaux biens aux acquéreurs » : enchaînement des étapes avec notes explicatives en français">
+        </a>
+      </article>
+
+      <article class="wf">
+        <div class="wf-text">
+          <p class="num">04</p>
+          <h3>Réserver les visites et envoyer les rappels</h3>
+          <p class="trigger">Déclencheur : Formulaire de réservation + toutes les heures</p>
+          <ul><li>Horaires d&#x27;ouverture, délai de prévenance et disponibilité de Google Agenda vérifiés, temps de trajet compris.</li><li>Créneau libre : événement créé, visite enregistrée, confirmation envoyée (vous en copie cachée).</li><li>Créneau pris : les trois créneaux libres les plus proches sont proposés aussitôt.</li><li>Rappel automatique la veille de chaque visite.</li></ul>
+        </div>
+        <a class="shot" href="img/04-viewing-booking-and-reminders.webp" target="_blank" rel="noopener">
+          <img src="img/04-viewing-booking-and-reminders.webp" width="1387" height="527" loading="lazy"
+               alt="Workflow n8n « Réserver les visites et envoyer les rappels » : enchaînement des étapes avec notes explicatives en français">
+        </a>
+      </article>
+
+      <article class="wf">
+        <div class="wf-text">
+          <p class="num">05</p>
+          <h3>Envoyer un rapport hebdomadaire aux vendeurs</h3>
+          <p class="trigger">Déclencheur : Chaque lundi, 8 h</p>
+          <ul><li>Pour chaque bien : demandes et visites (semaine et total), visites à venir, note moyenne des visiteurs.</li><li>Les commentaires des visiteurs et une recommandation simple (relances, présentation, prix).</li><li>Un seul e-mail par vendeur pour tous ses biens.</li></ul>
+        </div>
+        <a class="shot" href="img/05-weekly-seller-report.webp" target="_blank" rel="noopener">
+          <img src="img/05-weekly-seller-report.webp" width="1383" height="366" loading="lazy"
+               alt="Workflow n8n « Envoyer un rapport hebdomadaire aux vendeurs » : enchaînement des étapes avec notes explicatives en français">
+        </a>
+      </article>
+</div></section>
+
+<section id="exemples" class="alt"><div class="wrap">
+  <h2>Ce que reçoivent vos contacts et vos vendeurs</h2>
+  <p class="intro">Ces e-mails ont été produits par les workflows du kit, sans retouche. Les noms, l'agence, le lien de rendez-vous et tous les textes se personnalisent.</p>
+  <div class="mails">
+      <figure class="mail">
+        <figcaption>Réponse envoyée au contact, quelques secondes après sa demande</figcaption>
+        <div class="mail-head"><p><span>À</span> emma.martin@example.fr</p><p><span>Objet</span> <b>Votre demande d&#x27;information — LST-1001</b></p></div>
+        <div class="mail-body"><p>Bonjour Emma,</p><p>Merci pour votre demande concernant le bien LST-1001. Je serais ravi(e) d'organiser une visite : choisissez le créneau qui vous convient ici : <span class="link">https://calendly.com/votre-lien</span>.</p>
+<p>Pour vous proposer les biens les plus pertinents, pourriez-vous me préciser votre budget maximum, si vous avez déjà un accord de principe de votre banque, et la date d'emménagement souhaitée ?</p><p>Bien cordialement,<br>Votre nom<br>Votre agence · +33 6 00 00 00 00</p></div>
+      </figure>
+
+      <figure class="mail">
+        <figcaption>Alerte reçue par l&#x27;agent pour un contact chaud</figcaption>
+        <div class="mail-head"><p><span>À</span> vous@votreagence.fr</p><p><span>Objet</span> <b>🔥 Contact chaud (achat) : Emma Martin (score 90)</b></p></div>
+        <div class="mail-body"><p><b>Emma Martin</b> — emma.martin@example.fr — 0612345678</p>
+<p>Projet : achat · Budget : 450 000 € · Délai : 0-3 mois · Réf. : LST-1001</p>
+<p>Message : Nous avons un accord de principe et souhaitons visiter ce week-end.</p><p>Rappelez ce contact maintenant : un contact rappelé dans les 5 minutes se convertit bien mieux.</p></div>
+      </figure>
+
+      <figure class="mail">
+        <figcaption>Nouveau bien envoyé à une acquéreuse dont les critères correspondent</figcaption>
+        <div class="mail-head"><p><span>À</span> emma.martin@example.fr</p><p><span>Objet</span> <b>Nouveau bien correspondant à votre recherche : 12 rue des Érables</b></p></div>
+        <div class="mail-body"><p>Bonjour Emma,</p><p>Ces biens viennent d'arriver sur le marché et correspondent à votre recherche :</p>
+<table style="border-collapse:collapse;width:100%"><tr><td style="padding:12px;border-bottom:1px solid #eee">
+<b>12 rue des Érables</b>, Bastide<br>
+465 000 € · 3 ch. · Maison<br>
+<span class="link">Voir l'annonce</span> · Réf. LST-1001</td></tr></table>
+<p>Répondez à cet e-mail ou réservez une visite : <span class="link">https://calendly.com/votre-lien</span></p>
+<p>Bien cordialement,<br>Votre nom<br>Votre agence</p></div>
+      </figure>
+
+      <figure class="mail">
+        <figcaption>Rapport hebdomadaire reçu par une vendeuse</figcaption>
+        <div class="mail-head"><p><span>À</span> sophie.lefevre@example.fr</p><p><span>Objet</span> <b>Votre rapport hebdomadaire — du 26 sept. au 3 oct. 2026</b></p></div>
+        <div class="mail-body"><p>Bonjour Sophie,</p><p>Voici l'activité de vos biens au cours des 7 derniers jours.</p>
+<h3 style="margin:24px 0 4px">12 rue des Érables, Bastide</h3>
+<p style="margin:0;color:#666">Réf. LST-1001 · 465 000 € · Disponible · en vente depuis 40 jours</p>
+<table style="border-collapse:collapse;margin:8px 0">
+<tr><td style="padding:4px 16px 4px 0">Nouvelles demandes (semaine / total)</td><td><b>2</b> / 2</td></tr>
+<tr><td style="padding:4px 16px 4px 0">Visites (semaine / total)</td><td><b>1</b> / 1</td></tr>
+<tr><td style="padding:4px 16px 4px 0">Visites à venir</td><td><b>1</b></td></tr>
+<tr><td style="padding:4px 16px 4px 0">Note moyenne des visiteurs</td><td><b>4,0 / 5</b></td></tr>
+</table>
+<p><i>Ce qu'en disent les visiteurs :</i></p><ul><li>Très beau jardin, la cuisine est à rafraîchir.</li></ul>
+<p style="background:#f5f7fa;padding:8px 12px;border-radius:6px">💡 1 visite déjà prévue dans les prochains jours.</p><h3 style="margin:24px 0 4px">19 allée des Bouleaux, Bastide</h3>
+<p style="margin:0;color:#666">Réf. LST-1005 · 390 000 € · Sous offre · en vente depuis 30 jours</p>
+<table style="border-collapse:collapse;margin:8px 0">
+<tr><td style="padding:4px 16px 4px 0">Nouvelles demandes (semaine / total)</td><td><b>0</b> / 1</td></tr>
+<tr><td style="padding:4px 16px 4px 0">Visites (semaine / total)</td><td><b>0</b> / 0</td></tr>
+<tr><td style="padding:4px 16px 4px 0">Visites à venir</td><td><b>1</b></td></tr>
+<tr><td style="padding:4px 16px 4px 0">Note moyenne des visiteurs</td><td><b>—</b></td></tr>
+</table>
+
+<p style="background:#f5f7fa;padding:8px 12px;border-radius:6px">💡 1 visite déjà prévue dans les prochains jours.</p>
+<p>Une question ? Répondez simplement à cet e-mail.</p><p>Bien cordialement,<br>Votre nom<br>Votre agence</p></div>
+      </figure>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <h2>Opérationnel en 20 minutes</h2>
+  <ol class="steps">
+    <li><h3>Créez le Google Sheet</h3><p>Trois onglets, en-têtes fournis : Contacts, Biens, Visites.</p></li>
+    <li><h3>Importez les workflows</h3><p>Un fichier par workflow, à importer dans n8n Cloud ou auto-hébergé.</p></li>
+    <li><h3>Connectez Google</h3><p>Gmail, Google Sheets et Google Agenda, en quelques clics.</p></li>
+    <li><h3>Remplissez « Config »</h3><p>Agence, signature, lien de rendez-vous… puis publiez.</p></li>
+  </ol>
+  <h2 style="margin-top:56px">Ce que contient le kit</h2>
+  <ul class="inside">
+    <li>Les 5 workflows prêts à importer</li>
+    <li>Un générateur de données de démo pour tout essayer</li>
+    <li>Les modèles d'en-têtes du Google Sheet</li>
+    <li>Un guide d'installation par workflow</li>
+    <li>La liste des comptes à connecter</li>
+    <li>Un guide de démonstration et des scripts d'essai</li>
+    <li>Des e-mails rédigés en français, au vouvoiement</li>
+    <li>Les mises à jour en cas de changement bloquant de n8n</li>
+  </ul>
+</div></section>
+
+<section id="tarifs" class="alt"><div class="wrap">
+  <h2>Tarifs</h2>
+  <p class="intro">Paiement unique, sans abonnement. Paiement sécurisé et téléchargement immédiat via Gumroad. −20 % avec le code <b>LAUNCH20</b> jusqu'au 31 octobre 2026.</p>
+  <div class="prices">
+    <div class="price best"><span class="tag">Le plus complet</span><h3>Kit complet</h3><p class="amount">99 €</p>
+      <ul><li>Les 5 workflows</li><li>Générateur de données de démo</li><li>Modèles de Google Sheet, guides et scripts</li></ul>
+      <a class="btn btn-dark" href="https://revoire.gumroad.com/l/kit-automatisation-immobiliere-n8n">Obtenir le kit</a></div>
+    <div class="price"><h3>Réponse instantanée</h3><p class="amount">29 €</p>
+      <ul><li>Workflow 01 seul</li><li>Note, enregistrement, réponse et alerte</li><li>Guide et scripts de démo</li></ul>
+      <a class="btn btn-dark" href="https://revoire.gumroad.com/l/reponse-instantanee-contacts-immobiliers-n8n">Choisir</a></div>
+    <div class="price"><h3>Réservation de visites</h3><p class="amount">39 €</p>
+      <ul><li>Workflow 04 seul</li><li>Agenda, autres créneaux, rappels</li><li>Générateur de démo inclus</li></ul>
+      <a class="btn btn-dark" href="https://revoire.gumroad.com/l/reservation-visites-rappels-n8n">Choisir</a></div>
+  </div>
+  <div class="free"><b>Gratuit :</b> le module de relances automatiques (workflow 02) avec les modèles de Sheet et les données de démo.
+    <a href="https://revoire.gumroad.com/l/relances-contacts-immobiliers-n8n-gratuit">Le télécharger</a></div>
+</div></section>
+
+<section id="faq"><div class="wrap">
+  <h2>Questions fréquentes</h2>
+  <details><summary>Faut-il savoir programmer ?</summary><p>Non. Vous importez chaque workflow dans n8n, vous connectez votre compte Google en quelques clics et vous remplissez le nœud « Config » (ID du Google Sheet, nom de l'agence, lien de prise de rendez-vous…). Les textes des e-mails se modifient dans un bloc de texte clairement indiqué, en tête de chaque étape.</p></details>
+<details><summary>De quoi ai-je besoin ?</summary><p>De n8n en version 2 (n8n Cloud, avec abonnement n8n, ou n8n auto-hébergé, gratuit) et d'un compte Google (Gmail ou Google Workspace). Aucun CRM payant, aucun service tiers, aucune clé d'API à acheter.</p></details>
+<details><summary>Où vont les données de mes contacts ?</summary><p>Elles restent dans votre Google Sheet et votre instance n8n. Le kit n'envoie rien à un service extérieur et ne contient aucun identifiant ni aucune donnée personnelle.</p></details>
+<details><summary>Est-ce compatible avec mon site ?</summary><p>Oui, dès que votre formulaire peut envoyer ses réponses à une adresse web (webhook) : WordPress avec une extension de formulaire, Webflow, Typeform, Jotform, Tally… Les noms de champs français ou anglais sont reconnus automatiquement. Les e-mails reçus des portails demandent une étape de lecture supplémentaire, non incluse.</p></details>
+<details><summary>Combien de temps pour l&#x27;installer ?</summary><p>Environ 20 minutes pour l'ensemble. Un générateur de données de démo remplit le Sheet pour tout essayer avant de brancher vos vrais contacts, et chaque workflow est livré avec un guide de démonstration.</p></details>
+<details><summary>Comment a-t-il été testé ?</summary><p>Chaque workflow tourne dans une suite de tests automatisés sur n8n 2.41 (130 scénarios en français et en anglais), puis a été essayé sur de vrais comptes Google Sheets, Gmail et Google Agenda.</p></details>
+<details><summary>Et après l&#x27;achat ?</summary><p>Vous téléchargez immédiatement l'archive. Pour toute question, répondez à l'e-mail de votre achat. Les mises à jour sont gratuites si une nouvelle version de n8n casse un workflow.</p></details>
+<details><summary>Existe-t-il une version anglaise ?</summary><p>Oui, le même kit existe en anglais : <a href="https://revoire.gumroad.com/l/real-estate-n8n-kit">Real Estate Automation Kit for n8n</a>.</p></details>
+</div></section>
+
+<section class="final"><div class="wrap">
+  <h2>Chaque contact mérite une réponse rapide</h2>
+  <p>Installez le kit une fois : il répond, relance et informe vos vendeurs à votre place.</p>
+  <div class="ctas" style="justify-content:center">
+    <a class="btn btn-main" href="https://revoire.gumroad.com/l/kit-automatisation-immobiliere-n8n">Obtenir le kit — 99 €</a>
+    <a class="btn btn-ghost" href="https://revoire.gumroad.com/l/relances-contacts-immobiliers-n8n-gratuit">Essayer le module gratuit</a>
+  </div>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+  <p><b>Mentions légales.</b> Éditeur : Christophe Revoire. Hébergement : GitHub Pages — GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis. Vente, paiement et livraison : Gumroad.</p>
+  <p>Ce site ne dépose aucun cookie et n'utilise aucun outil de mesure d'audience.</p>
+  <p>n8n est une marque de n8n GmbH ; Google Sheets, Gmail et Google Agenda sont des marques de Google LLC. Ce kit est indépendant et n'est ni affilié ni approuvé par ces sociétés.</p>
+</div></footer>
+</body>
+</html>

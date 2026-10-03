@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://adr3n4lyn3.github.io/automatisation-immobiliere-n8n/sitemap.xml
